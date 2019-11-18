@@ -16,6 +16,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var canonButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return [.portrait, .portraitUpsideDown]
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -48,6 +54,8 @@ class ViewController: UIViewController {
             UIApplication.shared.openURL(url)
         }
     }
+    
+     
     
 }
 
