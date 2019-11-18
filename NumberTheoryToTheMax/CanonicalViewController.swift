@@ -132,6 +132,7 @@ class CanonicalViewController: UIViewController {
             return NSMutableAttributedString(string: string)
         }
     }
+    
     @IBAction func copyToClipboard(_ sender: Any) {
         UIPasteboard.general.string = nonAttributedAnswer.joined(separator: "* ")
     }

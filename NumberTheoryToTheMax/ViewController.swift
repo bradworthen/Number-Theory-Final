@@ -37,7 +37,18 @@ class ViewController: UIViewController {
         return true
     }
 
+    @IBAction func toBinkBalls(_ sender: Any) {
+        guard let url = URL(string: "https://www.binkballs.art/") else {
+          return
+        }
 
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
 }
 
 
