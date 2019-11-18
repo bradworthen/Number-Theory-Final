@@ -10,21 +10,111 @@ import UIKit
 
 class CanonicalViewController: UIViewController {
 
+    @IBOutlet weak var inputField: UITextField!
+    @IBOutlet weak var outputLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func inputChanged(_ sender: Any) {
+        if let input = inputField.text {
+            if input == "" {
+                outputLabel.text = ""
+            }
+            let number = Int(input)
+            if let number = number {
+                let answer = primeFactors(number)
+                let answerString = NSMutableAttributedString()
+                for string in answer {
+                    var combinedString = NSMutableAttributedString()
+                    if answer.first != string {
+                        combinedString = NSMutableAttributedString(string: "+ ")
+                    }
+                    
+                    combinedString.append(string)
+                    combinedString.append(NSMutableAttributedString(string: " "))
+                    answerString.append(combinedString)
+                }
+                outputLabel.attributedText = answerString
+            }
+        } else {
+            outputLabel.text = ""
+        }
+        
     }
-    */
+    
+    func primeFactors(_ n: Int) -> [NSMutableAttributedString] {
+        var n = n
+        var factors = [Int]()
+
+        var divisor = 2
+        while divisor * divisor <= n {
+            while n % divisor == 0 {
+                factors.append(divisor)
+                n /= divisor
+            }
+            divisor += divisor == 2 ? 1 : 2
+        }
+        if n > 1 {
+            factors.append(n)
+        }
+        
+        var counts = [Int:Int]()
+        var filteredFactors = [Int]()
+        
+        for integer in factors {
+            if let seen = counts[integer] {
+                counts[integer] = seen + 1
+            } else {
+                counts[integer] = 1
+                filteredFactors.append(integer)
+            }
+        }
+        
+        var stringFactors = [NSMutableAttributedString]()
+        
+        for integer in filteredFactors {
+            if let exponent = counts[integer] {
+                let string = "\(integer)^\(exponent) "
+                let attributedString = addSuperScript(to: string)
+                stringFactors.append(attributedString)
+            }
+        }
+
+        return stringFactors
+    }
+    
+    func addSuperScript(to string: String) -> NSMutableAttributedString {
+        let exponent = Character("^")
+        var duplicateString = string
+        if let index = string.firstIndex(of: exponent) {
+            let nextIndex = string.index(after: index)
+            if string[nextIndex] == "1" {
+                duplicateString.remove(at: index)
+                duplicateString.remove(at: nextIndex)
+                return NSMutableAttributedString(string: duplicateString)
+                
+            }
+            
+            let intIndex = index.utf16Offset(in: string)
+            duplicateString.remove(at: index)
+            let range = NSRange(location: intIndex, length: duplicateString.count-1-intIndex)
+            
+            let fontSuper:UIFont? = UIFont.systemFont(ofSize: 25)
+            
+            let attributedString = NSMutableAttributedString(string: duplicateString)
+            attributedString.setAttributes([NSAttributedString.Key.font:fontSuper!,.baselineOffset:17], range: range)
+
+            return attributedString
+        }
+        else {
+            return NSMutableAttributedString(string: string)
+        }
+    }
 
 }
+
