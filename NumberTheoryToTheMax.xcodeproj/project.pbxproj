@@ -20,7 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		83CEEE252382F9BA002A51BE /* NumberTheoryToTheMax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NumberTheoryToTheMax.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83CEEE252382F9BA002A51BE /* Bink Balls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bink Balls.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83CEEE282382F9BA002A51BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83CEEE2A2382F9BA002A51BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		83CEEE2C2382F9BA002A51BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		83CEEE262382F9BA002A51BE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				83CEEE252382F9BA002A51BE /* NumberTheoryToTheMax.app */,
+				83CEEE252382F9BA002A51BE /* Bink Balls.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,7 +96,7 @@
 			);
 			name = NumberTheoryToTheMax;
 			productName = NumberTheoryToTheMax;
-			productReference = 83CEEE252382F9BA002A51BE /* NumberTheoryToTheMax.app */;
+			productReference = 83CEEE252382F9BA002A51BE /* Bink Balls.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -308,7 +308,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.missouri.NumberTheoryToTheMax;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Bink Balls";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -326,7 +326,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.missouri.NumberTheoryToTheMax;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Bink Balls";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
