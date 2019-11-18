@@ -12,37 +12,48 @@ class CanonicalViewController: UIViewController {
 
     @IBOutlet weak var inputField: UITextField!
     @IBOutlet weak var outputLabel: UILabel!
+    @IBOutlet weak var clipboardButton: UIButton!
+    
+    var nonAttributedAnswer = [String]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        clipboardButton.isHidden = true
+//        inputField.clearButtonMode = UITextField.ViewMode.whileEditing
         // Do any additional setup after loading the view.
     }
     
     @IBAction func inputChanged(_ sender: Any) {
+        nonAttributedAnswer.removeAll()
         if let input = inputField.text {
             if input == "" {
                 outputLabel.text = ""
-            }
-            let number = Int(input)
-            if let number = number {
-                let answer = primeFactors(number)
-                let answerString = NSMutableAttributedString()
-                for string in answer {
-                    var combinedString = NSMutableAttributedString()
-                    if answer.first != string {
-                        combinedString = NSMutableAttributedString(string: "+ ")
+                clipboardButton.isHidden = true
+            } else {
+                clipboardButton.isHidden = false
+                let number = Int(input)
+                if let number = number {
+                    let answer = primeFactors(number)
+                    let answerString = NSMutableAttributedString()
+                    for string in answer {
+                        var combinedString = NSMutableAttributedString()
+                        if answer.first != string {
+                            combinedString = NSMutableAttributedString(string: "* ")
+                        }
+                        
+                        combinedString.append(string)
+                        combinedString.append(NSMutableAttributedString(string: " "))
+                        answerString.append(combinedString)
                     }
-                    
-                    combinedString.append(string)
-                    combinedString.append(NSMutableAttributedString(string: " "))
-                    answerString.append(combinedString)
+                    outputLabel.attributedText = answerString
                 }
-                outputLabel.attributedText = answerString
             }
+
+            
         } else {
             outputLabel.text = ""
+            clipboardButton.isHidden = true
         }
         
     }
@@ -82,6 +93,7 @@ class CanonicalViewController: UIViewController {
                 let string = "\(integer)^\(exponent) "
                 let attributedString = addSuperScript(to: string)
                 stringFactors.append(attributedString)
+                nonAttributedAnswer.append(string)
             }
         }
 
@@ -89,13 +101,18 @@ class CanonicalViewController: UIViewController {
     }
     
     func addSuperScript(to string: String) -> NSMutableAttributedString {
+        print(string)
         let exponent = Character("^")
         var duplicateString = string
         if let index = string.firstIndex(of: exponent) {
+            print("Found exponent sign")
             let nextIndex = string.index(after: index)
             if string[nextIndex] == "1" {
-                duplicateString.remove(at: index)
+                print("Next index is 1")
                 duplicateString.remove(at: nextIndex)
+                duplicateString.remove(at: index)
+                
+                print(duplicateString)
                 return NSMutableAttributedString(string: duplicateString)
                 
             }
@@ -115,6 +132,27 @@ class CanonicalViewController: UIViewController {
             return NSMutableAttributedString(string: string)
         }
     }
-
+    @IBAction func copyToClipboard(_ sender: Any) {
+        UIPasteboard.general.string = nonAttributedAnswer.joined(separator: "* ")
+    }
+    
 }
 
+extension UITextField {
+    @objc func modifyClearButton(with image : UIImage) {
+        let clearButton = UIButton(type: .custom)
+        clearButton.setImage(image, for: .normal)
+        clearButton.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
+        clearButton.contentMode = .scaleAspectFit
+        clearButton.addTarget(self, action: #selector(UITextField.clear(_:)), for: .touchUpInside)
+        rightView = clearButton
+        rightViewMode = .whileEditing
+    }
+
+    @objc func clear(_ sender : AnyObject) {
+    if delegate?.textFieldShouldClear?(self) == true {
+        self.text = ""
+        sendActions(for: .editingChanged)
+    }
+}
+}

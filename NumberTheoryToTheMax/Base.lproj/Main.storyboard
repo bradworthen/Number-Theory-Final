@@ -15,7 +15,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pcQ-cs-exG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3S-kN-KGo">
+                                <rect key="frame" x="20" y="116.5" width="70" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="tGu-Ng-Msg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pcQ-cs-exG">
                                 <rect key="frame" x="301.5" y="115.5" width="92.5" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -29,13 +38,13 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNo-uD-YAi">
-                                <rect key="frame" x="40" y="404" width="334" height="0.0"/>
+                                <rect key="frame" x="71" y="404" width="272" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jTD-i2-Z2u">
-                                <rect key="frame" x="30" y="155.5" width="354" height="147"/>
+                                <rect key="frame" x="30" y="156" width="354" height="147"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="147" id="xUQ-Yx-Fgc"/>
@@ -51,37 +60,42 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3S-kN-KGo">
-                                <rect key="frame" x="20" y="116.5" width="61.5" height="31.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhl-RY-ZGU">
+                                <rect key="frame" x="351" y="392" width="33" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="61.5" id="tGu-Ng-Msg"/>
+                                    <constraint firstAttribute="width" constant="33" id="jPA-uw-M5D"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="copy24pt"/>
+                                <connections>
+                                    <action selector="copyToClipboard:" destination="dca-4W-G1L" eventType="touchUpInside" id="DgT-D0-h3q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.21176470588235294" green="0.70980392156862748" blue="0.0" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fNo-uD-YAi" firstAttribute="centerX" secondItem="N3D-V0-t4H" secondAttribute="centerX" id="94N-La-MIC"/>
                             <constraint firstItem="I3S-kN-KGo" firstAttribute="leading" secondItem="N3D-V0-t4H" secondAttribute="leading" constant="20" id="BJE-aZ-o7s"/>
                             <constraint firstItem="qkZ-xr-Jjf" firstAttribute="top" secondItem="N3D-V0-t4H" secondAttribute="top" constant="20" id="Dbp-Xx-duV"/>
                             <constraint firstItem="qkZ-xr-Jjf" firstAttribute="leading" secondItem="N3D-V0-t4H" secondAttribute="leading" constant="20" id="F86-gC-4pC"/>
+                            <constraint firstItem="fNo-uD-YAi" firstAttribute="centerX" secondItem="N3D-V0-t4H" secondAttribute="centerX" id="G0C-xd-Vuf"/>
                             <constraint firstItem="I3S-kN-KGo" firstAttribute="top" secondItem="qkZ-xr-Jjf" secondAttribute="bottom" constant="15" id="O6m-SU-4Ez"/>
+                            <constraint firstItem="N3D-V0-t4H" firstAttribute="trailing" secondItem="dhl-RY-ZGU" secondAttribute="trailing" constant="30" id="RSi-3T-KKb"/>
                             <constraint firstItem="N3D-V0-t4H" firstAttribute="trailing" secondItem="pcQ-cs-exG" secondAttribute="trailing" constant="20" id="TOr-TO-gFn"/>
                             <constraint firstItem="fNo-uD-YAi" firstAttribute="centerY" secondItem="N3D-V0-t4H" secondAttribute="centerY" id="WBr-4c-j38"/>
                             <constraint firstItem="jTD-i2-Z2u" firstAttribute="top" secondItem="I3S-kN-KGo" secondAttribute="bottom" constant="7.5" id="aHx-Qy-OaN"/>
                             <constraint firstItem="pcQ-cs-exG" firstAttribute="centerY" secondItem="I3S-kN-KGo" secondAttribute="centerY" id="fXy-FB-K3p"/>
                             <constraint firstItem="jTD-i2-Z2u" firstAttribute="leading" secondItem="I3S-kN-KGo" secondAttribute="leading" constant="10" id="g2c-Un-uBQ"/>
+                            <constraint firstItem="dhl-RY-ZGU" firstAttribute="leading" secondItem="fNo-uD-YAi" secondAttribute="trailing" constant="8" id="kSJ-Nn-8yi"/>
+                            <constraint firstItem="fNo-uD-YAi" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jTD-i2-Z2u" secondAttribute="bottom" id="kqd-Dl-Uor"/>
                             <constraint firstItem="N3D-V0-t4H" firstAttribute="trailing" secondItem="qkZ-xr-Jjf" secondAttribute="trailing" constant="54" id="oHh-z2-YeJ"/>
-                            <constraint firstItem="fNo-uD-YAi" firstAttribute="leading" secondItem="N3D-V0-t4H" secondAttribute="leading" constant="40" id="rWi-ga-rtw"/>
+                            <constraint firstItem="dhl-RY-ZGU" firstAttribute="centerY" secondItem="fNo-uD-YAi" secondAttribute="centerY" id="vX8-zp-MFS"/>
                             <constraint firstItem="jTD-i2-Z2u" firstAttribute="trailing" secondItem="pcQ-cs-exG" secondAttribute="trailing" constant="-10" id="wDM-2s-KYZ"/>
-                            <constraint firstItem="fNo-uD-YAi" firstAttribute="leading" secondItem="N3D-V0-t4H" secondAttribute="leading" constant="40" id="z7T-eu-vBt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="N3D-V0-t4H"/>
                     </view>
                     <navigationItem key="navigationItem" title="Canonical Factorization" id="U6v-7R-xqa"/>
                     <connections>
+                        <outlet property="clipboardButton" destination="dhl-RY-ZGU" id="o1i-70-PDN"/>
                         <outlet property="inputField" destination="pcQ-cs-exG" id="Cgo-aV-fuU"/>
                         <outlet property="outputLabel" destination="fNo-uD-YAi" id="Rxx-O4-g5q"/>
                     </connections>
@@ -221,5 +235,6 @@
     </scenes>
     <resources>
         <image name="binkballs" width="800" height="1000"/>
+        <image name="copy24pt" width="24" height="24"/>
     </resources>
 </document>
