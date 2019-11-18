@@ -105,14 +105,11 @@ class CanonicalViewController: UIViewController {
         let exponent = Character("^")
         var duplicateString = string
         if let index = string.firstIndex(of: exponent) {
-            print("Found exponent sign")
             let nextIndex = string.index(after: index)
             if string[nextIndex] == "1" {
-                print("Next index is 1")
                 duplicateString.remove(at: nextIndex)
                 duplicateString.remove(at: index)
                 
-                print(duplicateString)
                 return NSMutableAttributedString(string: duplicateString)
                 
             }
