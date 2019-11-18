@@ -14,6 +14,9 @@
 		83CEEE332382F9BA002A51BE /* NumberTheoryToTheMax.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83CEEE312382F9BA002A51BE /* NumberTheoryToTheMax.xcdatamodeld */; };
 		83CEEE352382F9BB002A51BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CEEE342382F9BB002A51BE /* Assets.xcassets */; };
 		83CEEE382382F9BB002A51BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CEEE362382F9BB002A51BE /* LaunchScreen.storyboard */; };
+		83CEEE402382FB59002A51BE /* CRTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CEEE3F2382FB59002A51BE /* CRTViewController.swift */; };
+		83CEEE422382FB65002A51BE /* EuclideanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CEEE412382FB65002A51BE /* EuclideanViewController.swift */; };
+		83CEEE442382FB6C002A51BE /* CanonicalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CEEE432382FB6C002A51BE /* CanonicalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		83CEEE342382F9BB002A51BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83CEEE372382F9BB002A51BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83CEEE392382F9BB002A51BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83CEEE3F2382FB59002A51BE /* CRTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRTViewController.swift; sourceTree = "<group>"; };
+		83CEEE412382FB65002A51BE /* EuclideanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuclideanViewController.swift; sourceTree = "<group>"; };
+		83CEEE432382FB6C002A51BE /* CanonicalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonicalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,9 @@
 				83CEEE2A2382F9BA002A51BE /* SceneDelegate.swift */,
 				83CEEE2C2382F9BA002A51BE /* ViewController.swift */,
 				83CEEE2E2382F9BA002A51BE /* Main.storyboard */,
+				83CEEE3F2382FB59002A51BE /* CRTViewController.swift */,
+				83CEEE412382FB65002A51BE /* EuclideanViewController.swift */,
+				83CEEE432382FB6C002A51BE /* CanonicalViewController.swift */,
 				83CEEE342382F9BB002A51BE /* Assets.xcassets */,
 				83CEEE362382F9BB002A51BE /* LaunchScreen.storyboard */,
 				83CEEE392382F9BB002A51BE /* Info.plist */,
@@ -142,7 +151,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				83CEEE2D2382F9BA002A51BE /* ViewController.swift in Sources */,
+				83CEEE442382FB6C002A51BE /* CanonicalViewController.swift in Sources */,
 				83CEEE332382F9BA002A51BE /* NumberTheoryToTheMax.xcdatamodeld in Sources */,
+				83CEEE402382FB59002A51BE /* CRTViewController.swift in Sources */,
+				83CEEE422382FB65002A51BE /* EuclideanViewController.swift in Sources */,
 				83CEEE292382F9BA002A51BE /* AppDelegate.swift in Sources */,
 				83CEEE2B2382F9BA002A51BE /* SceneDelegate.swift in Sources */,
 			);

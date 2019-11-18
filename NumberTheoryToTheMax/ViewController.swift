@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var crtButton: UIButton!
+    @IBOutlet weak var eucButton: UIButton!
+    @IBOutlet weak var canonButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
