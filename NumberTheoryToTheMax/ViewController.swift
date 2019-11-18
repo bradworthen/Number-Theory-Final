@@ -22,9 +22,14 @@ class ViewController: UIViewController {
         crtButton.backgroundColor = UIColor.init(rgb: 0x003591).withAlphaComponent(0.85)
         eucButton.backgroundColor = UIColor.init(rgb: 0x714682).withAlphaComponent(0.85)
         canonButton.backgroundColor = UIColor.init(rgb: 0x36b500).withAlphaComponent(0.85)
-        titleLabel.backgroundColor = UIColor.init(rgb: 0xCFBACE).withAlphaComponent(1)
+        titleLabel.backgroundColor = UIColor.init(rgb: 0xCFBACE).withAlphaComponent(1.0)
         titleLabel.layer.masksToBounds = true
-        titleLabel.layer.cornerRadius = 5
+        titleLabel.layer.cornerRadius = 8
+        
+        crtButton.titleLabel?.textAlignment = NSTextAlignment.center
+        eucButton.titleLabel?.textAlignment = NSTextAlignment.center
+        canonButton.titleLabel?.textAlignment = NSTextAlignment.center
+
     
     }
     
