@@ -165,7 +165,7 @@
                                 <rect key="frame" x="0.0" y="539.5" width="414" height="177.5"/>
                                 <color key="backgroundColor" red="0.63137254901960782" green="0.82352941176470584" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
-                                <state key="normal" title="Canonical Factorization">
+                                <state key="normal" title="Canonical Prime Factorization">
                                     <color key="titleColor" red="0.99215686270000003" green="0.98039215690000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -174,7 +174,6 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number Theory" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beb-DZ-NRl">
                                 <rect key="frame" x="20" y="84" width="374" height="60"/>
-                                <color key="backgroundColor" red="0.81176470588235294" green="0.72941176470588232" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -221,6 +220,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="eq8-Wp-GTo"/>
                     <connections>
+                        <outlet property="binkButton" destination="sHm-ZO-2Ps" id="gmU-0O-MHw"/>
                         <outlet property="canonButton" destination="hWb-oU-BuF" id="1za-GH-VeK"/>
                         <outlet property="crtButton" destination="aTs-tE-zxd" id="XQh-Lr-5cz"/>
                         <outlet property="eucButton" destination="R5a-yx-WbM" id="21I-Vf-4nb"/>

@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var eucButton: UIButton!
     @IBOutlet weak var canonButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var binkButton: UIButton!
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         get {
@@ -35,6 +36,10 @@ class ViewController: UIViewController {
         crtButton.titleLabel?.textAlignment = NSTextAlignment.center
         eucButton.titleLabel?.textAlignment = NSTextAlignment.center
         canonButton.titleLabel?.textAlignment = NSTextAlignment.center
+        
+        binkButton.layer.masksToBounds = true
+        binkButton.layer.cornerRadius = 30
+        binkButton.backgroundColor = UIColor.white.withAlphaComponent(0.35)
 
     
     }
