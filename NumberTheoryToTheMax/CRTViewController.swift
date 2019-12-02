@@ -18,8 +18,11 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var entryCounts = [InputObject]()
     var textFieldTagCount = 0
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
+
         calculateButton.layer.cornerRadius = 5
         entryCounts.append(InputObject(first: 0, second: 0))
 //        let initialTextField1 = UITextField()
@@ -46,13 +49,26 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "modCell", for: indexPath) as! CRTTableViewCell
 
-        
         cell.num1TextField.delegate = self
         cell.num2TextField.delegate = self
         
         cell.num1TextField.tag = 0
-        //cell.num1TextField.description = "\(indexPath.row)1"
         cell.num2TextField.tag = 1
+        
+        if entryCounts[indexPath.row].first == 0 {
+            cell.num1TextField.text = ""
+        } else {
+            cell.num1TextField.text = "\(entryCounts[indexPath.row].first)"
+        }
+        
+        if entryCounts[indexPath.row].second == 0 {
+            cell.num2TextField.text = ""
+        } else {
+            cell.num2TextField.text = "\(entryCounts[indexPath.row].second)"
+        }
+        
+        
+        
 
         
         
@@ -66,7 +82,6 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBAction func addNewLine(_ sender: Any) {
         entryCounts.append(InputObject(first: 0, second: 0))
-        textFieldTagCount += 1
         CRTableView.reloadData()
     }
     
@@ -77,6 +92,8 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         for pair in entryCounts {
             if pair.second == 0 {
+
+                
                 let alert = UIAlertController(title: "n mod 0 is undefined", message: "Please make sure that you have a value entered for all relevant fields.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true)
@@ -96,6 +113,8 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func calculateCRT(_ array1: [Int],_ array2: [Int]){
         print("calculating CRT")
+        print(array1)
+        print(array2)
         
     }
     
@@ -127,10 +146,35 @@ extension CRTViewController: UITextFieldDelegate {
             entryCounts[ip.row].second = Int(textField.text ?? "0") ?? 0
         }
     }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        var v : UIView = textField
+        repeat { v = v.superview! } while !(v is UITableViewCell)
+        let cell = v as! CRTTableViewCell // or UITableViewCell or whatever
+        let ip = self.CRTableView.indexPath(for:cell)!
+        
+        if textField.tag == 0 {
+            entryCounts[ip.row].first = Int(textField.text ?? "0") ?? 0
+        } else if textField.tag == 1 {
+            entryCounts[ip.row].second = Int(textField.text ?? "0") ?? 0
+        }
+    }
 }
 
 
 struct InputObject {
     var first: Int
     var second: Int
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
