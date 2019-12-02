@@ -20,6 +20,7 @@ class EuclideanViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         calculateButton.layer.cornerRadius = 5
+        calculateButton.titleLabel?.textAlignment = NSTextAlignment.center
         textView.layer.cornerRadius = 5
         // Do any additional setup after loading the view.
     }
@@ -38,6 +39,11 @@ class EuclideanViewController: UIViewController {
             let b = Int(num2Field.text ?? "0")
             let gcd = euclid(num1: UInt64(a!), num2: UInt64(b!))
             textView.text += "GCD: \(gcd)"
+            
+            let bottom = NSMakeRange(textView.text.count - 1, 1)
+            textView.scrollRangeToVisible(bottom)
+            num1Field.resignFirstResponder()
+            num2Field.resignFirstResponder()
         }
     }
     
