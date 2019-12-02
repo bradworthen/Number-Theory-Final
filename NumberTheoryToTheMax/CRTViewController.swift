@@ -111,10 +111,57 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-    func calculateCRT(_ array1: [Int],_ array2: [Int]){
+    func calculateCRT(_ arrayBs: [Int],_ arrayMods: [Int]){
         print("calculating CRT")
-        print(array1)
-        print(array2)
+        print(arrayBs)
+        print(arrayMods)
+        
+        let numEquations = arrayBs.count
+        var arrayNs = [Int]()
+        var arrayXs = [Int]()
+        var arrayProducts = [Int]()
+        //var i = 0
+
+        //Fill arrayNs
+        for i in 0..<numEquations
+        {
+            arrayNs.append(1)
+            for j in 0..<numEquations
+            {
+                if(i != j)
+                {
+                    arrayNs[i] *= arrayMods[j]
+                }
+            }
+        }
+        //Fill arrayXs
+        var counter : Int
+        for i in 0..<numEquations
+        {
+            counter = 1
+            while((arrayNs[i] * counter) % arrayMods[i] != 1)
+            {
+                counter += 1
+            }
+            arrayXs.append(counter)
+        }
+
+        //Fill arrayProducts and calculate N
+        var N = 1
+        var sumProduct = 0
+        for i in 0..<numEquations
+        {
+            arrayProducts.append(arrayBs[i] * arrayNs[i] * arrayXs[i])
+            sumProduct += arrayProducts[i]
+            //calculate N
+            N *= arrayMods[i]
+        }
+
+        let answer = sumProduct % N
+        print("SumProduct: \(sumProduct)")
+        print("N: \(N)")
+        answerTextView.text = "Answer: \(answer)"
+        
         
     }
     
