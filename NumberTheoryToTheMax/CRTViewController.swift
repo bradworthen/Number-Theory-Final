@@ -50,9 +50,9 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.num1TextField.delegate = self
         cell.num2TextField.delegate = self
         
-        cell.num1TextField.tag = indexPath.row
+        cell.num1TextField.tag = 0
         //cell.num1TextField.description = "\(indexPath.row)1"
-        cell.num2TextField.tag = textFieldTagCount+1
+        cell.num2TextField.tag = 1
 
         
         
@@ -72,14 +72,30 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBAction func calculateButtonPressed(_ sender: Any) {
         //check that every cell has 2 numbers & clear out arrays
+        var array1 = [Int]()
+        var array2 = [Int]()
         
+        for pair in entryCounts {
+            if pair.second == 0 {
+                let alert = UIAlertController(title: "n mod 0 is undefined", message: "Please make sure that you have a value entered for all relevant fields.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true)
+                
+                return
+            }
+            
+            array1.append(pair.first)
+            array2.append(pair.second)
+        }
         //get all the numbers from the table view into arrays
+        
+        calculateCRT(array1, array2)
         
         
     }
     
-    func calculateCRT(){
-        
+    func calculateCRT(_ array1: [Int],_ array2: [Int]){
+        print("calculating CRT")
         
     }
     
@@ -100,25 +116,16 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 
 extension CRTViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("Textfield \(textField.tag):\(textField.text ?? "nil")")
-//        var count = 0
-        for i in 0..<entryCounts.count {
-            print("General i: \(i)")
-            if i == textField.tag {
-                print("first i: \(i)")
-                //value is from first text field
-                self.entryCounts[i].first = Int(textField.text ?? "0") ?? 0
-            } else if i == textField.tag+1 {
-                //value is from second text field
-                print("second i: \(i)")
-                print(textField.tag+1)
-                self.entryCounts[i].second = Int(textField.text ?? "0") ?? 0
-                
-            }
-            
+        var v : UIView = textField
+        repeat { v = v.superview! } while !(v is UITableViewCell)
+        let cell = v as! CRTTableViewCell // or UITableViewCell or whatever
+        let ip = self.CRTableView.indexPath(for:cell)!
+        
+        if textField.tag == 0 {
+            entryCounts[ip.row].first = Int(textField.text ?? "0") ?? 0
+        } else if textField.tag == 1 {
+            entryCounts[ip.row].second = Int(textField.text ?? "0") ?? 0
         }
-                
-        print(entryCounts)
     }
 }
 
@@ -126,8 +133,4 @@ extension CRTViewController: UITextFieldDelegate {
 struct InputObject {
     var first: Int
     var second: Int
-}
-
-extension UITextField {
-    //var stringTag: String
 }
