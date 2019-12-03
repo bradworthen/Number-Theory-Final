@@ -67,33 +67,27 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             cell.num2TextField.text = "\(entryCounts[indexPath.row].second)"
         }
         
-        
-        
-
-        
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("They just selected row \(indexPath.row)")
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     @IBAction func addNewLine(_ sender: Any) {
-        entryCounts.append(InputObject(first: 0, second: 0))
-        CRTableView.reloadData()
+        if (entryCounts.count <= 20) {
+            entryCounts.append(InputObject(first: 0, second: 0))
+            CRTableView.reloadData()
+        }
     }
     
     @IBAction func calculateButtonPressed(_ sender: Any) {
-        //check that every cell has 2 numbers & clear out arrays
         var array1 = [Int]()
         var array2 = [Int]()
+        var seenPairs = Set<InputObject>()
         
         for pair in entryCounts {
             if pair.second == 0 {
-
-                
                 let alert = UIAlertController(title: "n mod 0 is undefined", message: "Please make sure that you have a value entered for all relevant fields.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true)
@@ -101,14 +95,15 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 return
             }
             
-            array1.append(pair.first)
-            array2.append(pair.second)
+            if !seenPairs.contains(pair) {
+                array1.append(pair.first)
+                array2.append(pair.second)
+                seenPairs.insert(pair)
+            }
+            
         }
-        //get all the numbers from the table view into arrays
         
         calculateCRT(array1, array2)
-        
-        
     }
     
     func calculateCRT(_ arrayBs: [Int],_ arrayMods: [Int]){
@@ -123,24 +118,19 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         //var i = 0
 
         //Fill arrayNs
-        for i in 0..<numEquations
-        {
+        for i in 0..<numEquations {
             arrayNs.append(1)
-            for j in 0..<numEquations
-            {
-                if(i != j)
-                {
+            for j in 0..<numEquations {
+                if(i != j) {
                     arrayNs[i] *= arrayMods[j]
                 }
             }
         }
         //Fill arrayXs
-        var counter : Int
-        for i in 0..<numEquations
-        {
+        var counter = 0
+        for i in 0..<numEquations {
             counter = 1
-            while((arrayNs[i] * counter) % arrayMods[i] != 1)
-            {
+            while((arrayNs[i] * counter) % arrayMods[i] != 1) {
                 counter += 1
             }
             arrayXs.append(counter)
@@ -149,8 +139,7 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         //Fill arrayProducts and calculate N
         var N = 1
         var sumProduct = 0
-        for i in 0..<numEquations
-        {
+        for i in 0..<numEquations {
             arrayProducts.append(arrayBs[i] * arrayNs[i] * arrayXs[i])
             sumProduct += arrayProducts[i]
             //calculate N
@@ -166,7 +155,11 @@ class CRTViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        if entryCounts.count > 1 {
+            return true
+        } else {
+            return false
+        }
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -209,9 +202,13 @@ extension CRTViewController: UITextFieldDelegate {
 }
 
 
-struct InputObject {
+struct InputObject: Hashable, Equatable {
     var first: Int
     var second: Int
+    
+    static func == (lhs: InputObject, rhs: InputObject) -> Bool {
+        return lhs.first == rhs.first && lhs.second == rhs.second
+    }
 }
 
 extension UIViewController {
